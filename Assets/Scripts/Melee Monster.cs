@@ -14,11 +14,16 @@ public class MonsterAI : MonoBehaviour
     public float attackPrefabLifetime = 1f;
 
     private Transform player;
+    private Transform core;
     private float lastAttackTime = 0f;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        GameObject coreObj = GameObject.FindGameObjectWithTag("Core");
+        if (coreObj != null)
+            core = coreObj.transform;
     }
 
     void Update()
@@ -44,6 +49,14 @@ public class MonsterAI : MonoBehaviour
                 // in attack range
                 TryAttack();
             }
+        }
+        else if (distance >= detectionRadius)
+        {
+            Vector3 dir = (core.position - transform.position).normalized;
+            dir.y = 0; // prevent tilting up/down
+            transform.rotation = Quaternion.LookRotation(dir);
+
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
         }
     }
 

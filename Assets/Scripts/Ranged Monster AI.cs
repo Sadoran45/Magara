@@ -15,11 +15,16 @@ public class RangedMonsterAI : MonoBehaviour
     public float spawnOffset = 1f;        // how far in front of monster the projectile spawns
 
     private Transform player;
+    private Transform core;
     private float lastAttackTime = 0f;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        GameObject coreObj = GameObject.FindGameObjectWithTag("Core");
+        if (coreObj != null)
+            core = coreObj.transform;
     }
 
     void Update()
@@ -45,6 +50,14 @@ public class RangedMonsterAI : MonoBehaviour
                 // attack if cooldown ready
                 TryShoot();
             }
+        }
+        else if (distance >= detectionRadius)
+        {
+            Vector3 dir = (core.position - transform.position).normalized;
+            dir.y = 0; // prevent tilting up/down
+            transform.rotation = Quaternion.LookRotation(dir);
+
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
         }
     }
 
