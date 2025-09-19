@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 1
+  locomotionState: 0
   moveSpeed: 5
   rotationSpeed: 10
 --- !u!1001 &1483492449
@@ -784,6 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 0
+  locomotionState: 0
   moveSpeed: 5
   rotationSpeed: 10
 --- !u!1660057539 &9223372036854775807

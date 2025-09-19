@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CustomPlayerController : MonoBehaviour
 {
-    public enum PlayerType { Player1, Player2 }
+    public enum PlayerType { WASD, ARROWS }
     public enum LocomotionState { Active, Inactive }
     
     public PlayerType playerType;
@@ -24,14 +24,14 @@ public class CustomPlayerController : MonoBehaviour
         float h = 0f;
         float v = 0f;
 
-        if (playerType == PlayerType.Player1)
+        if (playerType == PlayerType.WASD)
         {
             // WASD
             h = Input.GetKey(KeyCode.A) ? -1 : Input.GetKey(KeyCode.D) ? 1 : 0;
             v = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
             inputDirection = new Vector3(h, 0, v).normalized;
         }
-        else if (playerType == PlayerType.Player2)
+        else if (playerType == PlayerType.ARROWS)
         {
             // Ok tuşları sadece hareket için
             h = Input.GetKey(KeyCode.LeftArrow) ? -1 : Input.GetKey(KeyCode.RightArrow) ? 1 : 0;
@@ -46,9 +46,9 @@ public class CustomPlayerController : MonoBehaviour
         if (locomotionState == LocomotionState.Inactive)
             return;
             
-        if (playerType == PlayerType.Player1)
+        if (playerType == PlayerType.WASD)
         {
-            // Player1: WASD ile hem hareket hem dönüş
+            // WASD: WASD ile hem hareket hem dönüş
             if (inputDirection.magnitude > 0.1f)
             {
                 // Hedef rotasyon
@@ -59,9 +59,9 @@ public class CustomPlayerController : MonoBehaviour
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             }
         }
-        else if (playerType == PlayerType.Player2)
+        else if (playerType == PlayerType.ARROWS)
         {
-            // Player2: Arrow keys ile hareket, mouse ile dönüş
+            // ARROWS: Arrow keys ile hareket, mouse ile dönüş
             
             // Mouse pozisyonuna göre dönüş
             Vector3 mousePosition = Input.mousePosition;
