@@ -3,7 +3,10 @@ using UnityEngine;
 public class CustomPlayerController : MonoBehaviour
 {
     public enum PlayerType { Player1, Player2 }
+    public enum LocomotionState { Active, Inactive }
+    
     public PlayerType playerType;
+    public LocomotionState locomotionState = LocomotionState.Active;
 
     public float moveSpeed = 5f;
     public float rotationSpeed = 10f;
@@ -39,6 +42,10 @@ public class CustomPlayerController : MonoBehaviour
 
     void MoveAndRotate()
     {
+        // Locomotion state kontrolü - eğer inactive ise hareket etme
+        if (locomotionState == LocomotionState.Inactive)
+            return;
+            
         if (playerType == PlayerType.Player1)
         {
             // Player1: WASD ile hem hareket hem dönüş
