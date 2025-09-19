@@ -1,65 +1,62 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MonsterAI : MonoBehaviour
 {
     [Header("Detection & Attack")]
-    public float detectionRadius = 10f;
-    public float attackRange = 2f;
-    public float attackCooldown = 2f;
-    public GameObject attackHitbox; // assign child collider object
-    public float hitboxActiveTime = 0.5f; // how long hitbox stays active
+    public float detectionRadius = 10f;   // sensing range
+    public float attackRange = 2f;        // melee attack range
+    public float attackCooldown = 2f;     // delay between attacks
+    public float moveSpeed = 3f;          // forward speed
 
-    private NavMeshAgent agent;
+    [Header("Attack Prefab")]
+    public GameObject attackPrefab;
+    public float spawnDistance = 1.5f;
+    public float attackPrefabLifetime = 1f;
+
     private Transform player;
+    private Transform core;
     private float lastAttackTime = 0f;
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        /* optional: create detection trigger at runtime
-        SphereCollider col = gameObject.AddComponent<SphereCollider>();
-        col.isTrigger = true;
-        col.radius = detectionRadius;*/
-
-        // make sure hitbox starts disabled
-        if (attackHitbox != null)
-            attackHitbox.SetActive(false);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            player = other.transform;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            player = null;
-            agent.ResetPath();
-        }
+        GameObject coreObj = GameObject.FindGameObjectWithTag("Core");
+        if (coreObj != null)
+            core = coreObj.transform;
     }
 
     void Update()
     {
-        if (player != null)
+        if (player == null) return;
+
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        if (distance <= detectionRadius)
         {
-            float distance = Vector3.Distance(transform.position, player.position);
+            // face the player
+            Vector3 dir = (player.position - transform.position).normalized;
+            dir.y = 0; // prevent tilting up/down
+            transform.rotation = Quaternion.LookRotation(dir);
 
             if (distance > attackRange)
             {
-                agent.SetDestination(player.position);
+                // move forward
+                transform.position += transform.forward * moveSpeed * Time.deltaTime;
             }
             else
             {
-                agent.ResetPath();
+                // in attack range
                 TryAttack();
             }
+        }
+        else if (distance >= detectionRadius)
+        {
+            Vector3 dir = (core.position - transform.position).normalized;
+            dir.y = 0; // prevent tilting up/down
+            transform.rotation = Quaternion.LookRotation(dir);
+
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
         }
     }
 
@@ -67,16 +64,24 @@ public class MonsterAI : MonoBehaviour
     {
         if (Time.time - lastAttackTime >= attackCooldown)
         {
-            Debug.Log("Monster starts attack!");
-            StartCoroutine(ActivateHitbox());
+            Vector3 spawnPos = transform.position + transform.forward * spawnDistance;
+            Quaternion spawnRot = transform.rotation;
+
+            GameObject attack = Instantiate(attackPrefab, spawnPos, spawnRot);
+            Destroy(attack, attackPrefabLifetime);
+
+            Debug.Log("Monster attacks!");
             lastAttackTime = Time.time;
         }
     }
 
-    System.Collections.IEnumerator ActivateHitbox()
+    // Debug gizmos
+    void OnDrawGizmosSelected()
     {
-        attackHitbox.SetActive(true);
-        yield return new WaitForSeconds(hitboxActiveTime);
-        attackHitbox.SetActive(false);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
