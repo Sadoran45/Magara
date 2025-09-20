@@ -27,7 +27,6 @@ public class Spawner : MonoBehaviour
     [Title("Runtime Info")]
     [ReadOnly] [SerializeField] private int currentWaveIndex = 0;
     [ReadOnly] [SerializeField] private int currentEnemyIndex = 0;
-    [ReadOnly] [SerializeField] private bool isSpawning = false;
     [ReadOnly] [SerializeField] private bool levelCompleted = false;
     
     private Coroutine spawnCoroutine;
@@ -78,7 +77,6 @@ public class Spawner : MonoBehaviour
             StopCoroutine(spawnCoroutine);
             spawnCoroutine = null;
         }
-        isSpawning = false;
     }
     
     [Button("Reset Level", ButtonSizes.Medium)]
@@ -120,7 +118,6 @@ public class Spawner : MonoBehaviour
     
     private IEnumerator SpawnWaves()
     {
-        isSpawning = true;
         Debug.Log($"SpawnWaves started. Total waves: {levelData.waves.Count}");
         
         while (currentWaveIndex < levelData.waves.Count && !levelCompleted)
@@ -160,7 +157,6 @@ public class Spawner : MonoBehaviour
         
         // All waves completed
         levelCompleted = true;
-        isSpawning = false;
         Debug.Log("All waves completed! Level finished.");
     }
     
