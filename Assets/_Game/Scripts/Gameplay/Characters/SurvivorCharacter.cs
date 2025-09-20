@@ -20,10 +20,10 @@ namespace _Game.Scripts.Gameplay.Characters
         
         #endregion
         
-        public async UniTaskVoid AutoAttack(Vector3 direction)
+        public async UniTaskVoid AutoAttack()
         {
             
-            var data = new RangeAutoAttackState.Data(direction);
+            var data = new RangeAutoAttackState.Data(aimDirection);
             
             var state = new RangeAutoAttackState(this, autoAttackConfig, data);
 

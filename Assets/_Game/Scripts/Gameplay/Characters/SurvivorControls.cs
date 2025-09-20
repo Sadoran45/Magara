@@ -17,24 +17,26 @@ namespace _Game.Scripts.Gameplay.Characters
         private void HandleAutoAttack()
         {
             // On left mouse click
+            var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, planeLayerMask))
+            {
+                Debug.Log("Hit position: "  + hit.point);
+                
+                var simplifiedHitPoint = new Vector3(hit.point.x, 0, hit.point.z);
+                var simplifiedPosition = new Vector3(transform.position.x, 0, transform.position.z);
+                
+                var direction = (simplifiedHitPoint - simplifiedPosition).normalized;
+
+                playerMotor.SetAimDirection(direction);
+            }
+            
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log("On mouse click");
-                var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, planeLayerMask))
-                {
-                    Debug.Log("Hit position: "  + hit.point);
-                    
-                    var simplifiedHitPoint = new Vector3(hit.point.x, 0, hit.point.z);
-                    var simplifiedPosition = new Vector3(transform.position.x, 0, transform.position.z);
-                    
-                    var direction =  simplifiedHitPoint - simplifiedPosition;
-
-                    playerMotor.AutoAttack(direction).Forget();
-                }
-                
+                playerMotor.AutoAttack().Forget();
             }
+            
         }
         
         private void HandleMovement()

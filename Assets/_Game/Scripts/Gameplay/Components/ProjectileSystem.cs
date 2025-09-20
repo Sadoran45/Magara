@@ -14,6 +14,9 @@ namespace _Game.Scripts.Gameplay.Components
         [SerializeField] private float hitBoxRadius = 0.2f;
         [SerializeField] private float maxLifetime = 7f;
 
+        [SerializeField] private ParticleSystem muzzleEffect;
+        [SerializeField] private ParticleSystem impactEffect;
+
         // FOR TEST PURPOSES
         public float BaseDamage => 50f;
 
@@ -34,6 +37,8 @@ namespace _Game.Scripts.Gameplay.Components
             _startSpeed = speed;
             _time = 0f;
             _ignoreColliders = ignoreColliders;
+            
+            ReleaseAndPlayEffect(muzzleEffect);
         }
 
         private void Update()
@@ -75,11 +80,18 @@ namespace _Game.Scripts.Gameplay.Components
             
             OnHit.OnNext(hitData);
             
+            ReleaseAndPlayEffect(impactEffect);
             // Optionally destroy the projectile after hit
             // CONSIDER handling lifetime someway else
             Destroy(gameObject);
         }
-        
+
+        private void ReleaseAndPlayEffect(ParticleSystem effect)
+        {
+            effect.transform.localPosition = Vector3.zero;
+            effect.transform.SetParent(null);
+            effect.Play();
+        }
         
         // Gizmos for radius
         private void OnDrawGizmos()

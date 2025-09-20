@@ -21,6 +21,7 @@ namespace _Game.Scripts.Gameplay.States
             public Transform muzzleTransform;
             public CancellableAnimation attackAnimation;
             public ProjectileSystem projectile;
+            
             public float projectileSpeed = 5f;
         }
         public class Data

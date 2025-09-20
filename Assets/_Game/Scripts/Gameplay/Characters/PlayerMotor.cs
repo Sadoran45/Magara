@@ -21,38 +21,51 @@ namespace _Game.Scripts.Gameplay.Characters
 
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float movementSpeed = 5f;
+        [SerializeField] private float shootingAngle = 110f;
         public float rotationSpeed = 10f;
 
         [SerializeField] private ReceiveHitState.Config receiveHitConfig;
         
         private Vector3 _movementInput;
+        protected Vector3 aimDirection;
+        private float _targetRotationOffset;
         
-        private void FixedUpdate()
-        {
-            var movement = _movementInput * (movementSpeed * Time.fixedDeltaTime);
-            
-            rb.MovePosition(rb.position + movement);
-            
-            var normalizedSpeed = _movementInput.magnitude > 0.1f ? 1f : 0f;
-            
-            animator.SetFloat("NormalizedSpeed", normalizedSpeed);
-            
-            // Rotate only if moving
-            if (_movementInput.sqrMagnitude > 0.01f)
-            {
-                var targetRot = Quaternion.LookRotation(_movementInput, Vector3.up);
-                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
-            }
-        }
-
         private void Update()
         {
-            // TODO
+            // --- Animation parameter ---
         }
 
+        private void FixedUpdate()
+        {
+            // --- Move ---
+            Vector3 velocity = _movementInput * movementSpeed;
+            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            
+            var dot = Vector3.Dot(velocity.normalized, aimDirection.normalized);
+            var dotAngle = dot * 180f;
+            // Within rotate threshold
+            
+            var targetRot = Quaternion.LookRotation(aimDirection, Vector3.up);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
+
+            var runningForward = dotAngle > shootingAngle;
+            var normalizedSpeed = runningForward ? 1f : -1f;
+            if (_movementInput == Vector3.zero)
+                normalizedSpeed = 0;
+            
+            Animator.SetBool("Running", velocity != Vector3.zero);
+            Animator.SetBool("RunningForward", runningForward);
+            
+        }
+        
         public void SendMovementInput(Vector3 input)
         {
             _movementInput = input;
+        }
+
+        public void SetAimDirection(Vector3 direction)
+        {
+            aimDirection = direction;
         }
 
         public void OnProjectileHit(ProjectileHitData data)
