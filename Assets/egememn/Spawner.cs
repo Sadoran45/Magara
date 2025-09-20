@@ -129,19 +129,29 @@ public class Spawner : MonoBehaviour
             
             while (currentEnemyIndex < currentWave.enemySequence.Count)
             {
-                EnemyType enemyType = currentWave.enemySequence[currentEnemyIndex];
-                Debug.Log($"Spawning enemy {currentEnemyIndex + 1}/{currentWave.enemySequence.Count}: {enemyType}");
+                SpawnSequenceItem currentItem = currentWave.enemySequence[currentEnemyIndex];
                 
-                SpawnEnemy(enemyType);
+                if (currentItem.isDelay)
+                {
+                    // Bu bir delay item'ı
+                    Debug.Log($"Processing delay {currentEnemyIndex + 1}/{currentWave.enemySequence.Count}: {currentItem.delayValue} seconds");
+                    yield return new WaitForSeconds(currentItem.delayValue);
+                }
+                else
+                {
+                    // Bu bir enemy spawn item'ı
+                    Debug.Log($"Spawning enemy {currentEnemyIndex + 1}/{currentWave.enemySequence.Count}: {currentItem.enemyType}");
+                    SpawnEnemy(currentItem.enemyType);
+                    
+                    // Normal spawn interval (sadece enemy spawn'dan sonra)
+                    if (currentEnemyIndex < currentWave.enemySequence.Count - 1) // Don't wait after last item
+                    {
+                        Debug.Log($"Waiting {spawnInterval} seconds before next item...");
+                        yield return new WaitForSeconds(spawnInterval);
+                    }
+                }
                 
                 currentEnemyIndex++;
-                
-                // Wait for spawn interval before spawning next enemy
-                if (currentEnemyIndex < currentWave.enemySequence.Count) // Don't wait after last enemy
-                {
-                    Debug.Log($"Waiting {spawnInterval} seconds before next spawn...");
-                    yield return new WaitForSeconds(spawnInterval);
-                }
             }
             
             Debug.Log($"Wave {currentWave.waveNumber} completed!");
