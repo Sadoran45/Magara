@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using _Game.Scripts.Core;
-using _Game.Scripts.Gameplay.Core;
+using _Game.Scripts.Gameplay.Characters;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -17,10 +17,10 @@ namespace _Game.Scripts.Gameplay.States
         }
         public class Data
         {
-            public int Damage { get; }
+            public float Damage { get; }
             public float DamageReductionRate { get; set; }
             
-            public Data(int damage)
+            public Data(float damage)
             {
                 Damage = damage;
                 DamageReductionRate = 0f;

@@ -11,11 +11,15 @@ namespace _Game.Scripts.Core.Helpers
     {
         
         
-        [SerializeField] private string animatorPropertyName;
+        [SerializeField] private string triggerPropertyName;
+        [SerializeField] private string cancelPropertyName;
         [SerializeField] private string animatorStateName;
         
-        private int _animatorPropertyHash;
-        private int AnimatorPropertyHash => _animatorPropertyHash != 0 ? _animatorPropertyHash : (_animatorPropertyHash = Animator.StringToHash(animatorPropertyName));
+        private int _triggerPropertyHash;
+        private int TriggerPropertyHash => _triggerPropertyHash != 0 ? _triggerPropertyHash : (_triggerPropertyHash = Animator.StringToHash(triggerPropertyName));
+        private int _cancelPropertyHash;
+        private int CancelPropertyHash => _cancelPropertyHash != 0 ? _cancelPropertyHash : (_cancelPropertyHash = Animator.StringToHash(cancelPropertyName));
+        
         
         private int _animatorStateHash;
         private int AnimatorStateHash => _animatorStateHash != 0 ? _animatorStateHash : (_animatorStateHash = Animator.StringToHash(animatorStateName));
@@ -23,7 +27,7 @@ namespace _Game.Scripts.Core.Helpers
 
         public async UniTask PlayAsync(Animator animator, CancellationToken cancellationToken = default)
         {
-            animator.SetBool(_animatorPropertyHash, true);
+            animator.SetTrigger(TriggerPropertyHash);
             
             try
             {
@@ -32,11 +36,16 @@ namespace _Game.Scripts.Core.Helpers
             catch (OperationCanceledException)
             {
                 // Handle cancellation if needed
+                animator.SetTrigger(CancelPropertyHash);
             }
             finally
             {
-                animator.SetBool(_animatorPropertyHash, false);
             }
+        }
+
+        public void Cancel(Animator animator)
+        {
+            animator.SetTrigger(CancelPropertyHash);
         }
     }
 }
