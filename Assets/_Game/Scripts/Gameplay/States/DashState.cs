@@ -2,7 +2,7 @@
 using System.Threading;
 using _Game.Scripts.Core;
 using _Game.Scripts.Core.Helpers;
-using _Game.Scripts.Gameplay.Core;
+using _Game.Scripts.Gameplay.Characters;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 

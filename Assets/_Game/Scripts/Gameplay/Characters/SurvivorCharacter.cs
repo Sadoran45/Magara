@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using _Game.Scripts.Gameplay.Core;
 using _Game.Scripts.Gameplay.States;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -13,23 +12,21 @@ namespace _Game.Scripts.Gameplay.Characters
     {
         [SerializeField] private RangeAutoAttackState.Config autoAttackConfig;
         [SerializeField] private DashState.Config dashConfig;
-        [SerializeField] private ReceiveHitState.Config receiveHitConfig;
 
 
-        public async UniTaskVoid AutoAttack()
+        #region Controls
+        
+        
+        
+        #endregion
+        
+        public async UniTaskVoid AutoAttack(Vector3 direction)
         {
             
-            var data = new RangeAutoAttackState.Data(Vector3.forward);
+            var data = new RangeAutoAttackState.Data(direction);
             
             var state = new RangeAutoAttackState(this, autoAttackConfig, data);
 
-            await StartState(state);
-        }
-
-        public async UniTaskVoid ReceiveHit(ReceiveHitState.Data data)
-        {
-            var state = new ReceiveHitState(this, receiveHitConfig, data);
-            
             await StartState(state);
         }
 

@@ -2,7 +2,6 @@
 using System.Threading;
 using _Game.Scripts.Core;
 using _Game.Scripts.Gameplay.Characters;
-using _Game.Scripts.Gameplay.Core;
 using _Game.Scripts.Gameplay.Interceptors;
 using Cysharp.Threading.Tasks;
 
