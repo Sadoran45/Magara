@@ -14,6 +14,12 @@ namespace _Game.Scripts.Gameplay.Characters
             HandleDash();
             
             HandleAutoAttack();
+            
+            // Test Laser Attack
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                playerMotor.LaserAttack().Forget();
+            }
         }
 
         private void HandleDash()

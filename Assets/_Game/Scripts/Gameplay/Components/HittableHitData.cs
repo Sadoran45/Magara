@@ -6,14 +6,14 @@ namespace _Game.Scripts.Gameplay.Components
     public class HittableHitData
     {
         public GameObject Target { get; }
-        public IBaseDamage Source { get; }
+        public IBaseDamageProvider DamageProvider { get; }
         public Vector3 HitPoint { get; }
         public Vector3 HitNormal { get; }
         
-        public HittableHitData(GameObject target, IBaseDamage source, Vector3 hitPoint, Vector3 hitNormal)
+        public HittableHitData(GameObject target, IBaseDamageProvider damageProvider, Vector3 hitPoint, Vector3 hitNormal)
         {
             Target = target;
-            Source = source;
+            DamageProvider = damageProvider;
             HitPoint = hitPoint;
             HitNormal = hitNormal;
         }

@@ -12,17 +12,16 @@ using Object = UnityEngine.Object;
 
 namespace _Game.Scripts.Gameplay.States
 {
-    public class RangeAutoAttackState : IState
+    public class AutoAttackState : IState, IBaseDamageProvider
     {
         [Serializable]
         public class Config
         {
-            public float baseFireRate;
             public Transform muzzleTransform;
             public CancellableAnimation attackAnimation;
-            public ProjectileSystem projectile;
+            public BaseCastableHitter hitter;
             
-            public float projectileSpeed = 5f;
+            public float baseDamage = 5f;
         }
         public class Data
         {
@@ -34,11 +33,13 @@ namespace _Game.Scripts.Gameplay.States
             }
         }
 
+        public float BaseDamage => _config.baseDamage;
+
         private readonly PlayerMotor _owner;
         private readonly Config _config;
         public Data StateData { get; }
         
-        public RangeAutoAttackState(PlayerMotor owner, Config config, Data data)
+        public AutoAttackState(PlayerMotor owner, Config config, Data data)
         {
             _owner = owner;
             _config = config;
@@ -51,19 +52,19 @@ namespace _Game.Scripts.Gameplay.States
             _config.attackAnimation.PlayAsync(_owner.Animator, cancellationToken).Forget();
             
             
-            var projectile = Object.Instantiate(_config.projectile, _config.muzzleTransform.position, Quaternion.LookRotation(StateData.Direction));
+            var hitter = Object.Instantiate(_config.hitter, _config.muzzleTransform.position, Quaternion.LookRotation(StateData.Direction));
 
             try
             {
-                projectile.Launch(StateData.Direction, _config.projectileSpeed, ignoreColliders: _owner.gameObject);
-                var projectileHitTask = projectile.OnHit.FirstAsync(projectile.destroyCancellationToken);
+                hitter.Launch(this, StateData.Direction, ignoreColliders: _owner.gameObject);
+                var hitTask = hitter.OnHit.FirstAsync(hitter.destroyCancellationToken);
             
-                var hitData = await projectileHitTask;
+                var hitData = await hitTask;
             
                 // Deal damage to the target if it's a hittable
                 var hittable = hitData.Target.GetComponent<IHittable>();
 
-                hittable?.OnProjectileHit(hitData);
+                hittable?.OnReceivedHit(hitData);
             }
             catch (OperationCanceledException)
             {

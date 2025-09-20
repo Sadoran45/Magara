@@ -4,6 +4,6 @@ namespace _Game.Scripts.Gameplay.Core
 {
     public interface IHittable
     {
-        void OnProjectileHit(HittableHitData data);
+        void OnReceivedHit(HittableHitData data);
     }
 }

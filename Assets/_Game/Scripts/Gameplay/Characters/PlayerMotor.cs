@@ -82,9 +82,9 @@ namespace _Game.Scripts.Gameplay.Characters
             _isMovingEnabled = true;
         }
         
-        public void OnProjectileHit(HittableHitData data)
+        public void OnReceivedHit(HittableHitData data)
         {
-            var receiveHitData = new ReceiveHitState.Data(data.Source.BaseDamage);
+            var receiveHitData = new ReceiveHitState.Data(data.DamageProvider.BaseDamage);
             var receiveHitState = new ReceiveHitState(this, receiveHitConfig, receiveHitData);
             
             StartState(receiveHitState).Forget();

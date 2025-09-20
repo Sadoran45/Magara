@@ -1,6 +1,6 @@
 ﻿namespace _Game.Scripts.Gameplay.Core
 {
-    public interface IBaseDamage
+    public interface IBaseDamageProvider
     {
         float BaseDamage { get; }
     }
