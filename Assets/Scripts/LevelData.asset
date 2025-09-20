@@ -12,4 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e9debb4acd9cf49ac0e21ea8761c76, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  waves: []
+  waves:
+  - waveNumber: 1
+    enemySequence:
+    - isDelay: 0
+      enemyType: 3
+      delayValue: 1
+    - isDelay: 1
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 1
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 2
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 3
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 3
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
