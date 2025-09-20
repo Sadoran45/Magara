@@ -14,4 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - waveNumber: 1
-    enemySequence: 01000000000000000200000003000000
+    enemySequence:
+    - isDelay: 0
+      enemyType: 3
+      delayValue: 1
+    - isDelay: 1
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 1
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 2
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 3
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 3
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
