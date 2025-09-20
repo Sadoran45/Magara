@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e9debb4acd9cf49ac0e21ea8761c76, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  waves:
-  - waveNumber: 1
-    enemySequence: 01000000000000000200000003000000
+  waves: []
