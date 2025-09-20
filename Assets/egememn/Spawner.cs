@@ -129,7 +129,7 @@ public class Spawner : MonoBehaviour
             
             while (currentEnemyIndex < currentWave.enemySequence.Count)
             {
-                EnemyType enemyType = currentWave.enemySequence[currentEnemyIndex];
+                EnemyType enemyType = EnemyType.Boss;//currentWave.enemySequence[currentEnemyIndex];
                 Debug.Log($"Spawning enemy {currentEnemyIndex + 1}/{currentWave.enemySequence.Count}: {enemyType}");
                 
                 SpawnEnemy(enemyType);
