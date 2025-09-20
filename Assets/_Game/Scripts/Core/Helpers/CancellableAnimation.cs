@@ -10,6 +10,7 @@ namespace _Game.Scripts.Core.Helpers
     public class CancellableAnimation
     {
         
+        
         [SerializeField] private string animatorPropertyName;
         [SerializeField] private string animatorStateName;
         
@@ -20,13 +21,13 @@ namespace _Game.Scripts.Core.Helpers
         private int AnimatorStateHash => _animatorStateHash != 0 ? _animatorStateHash : (_animatorStateHash = Animator.StringToHash(animatorStateName));
         
 
-        public async UniTask PlayAsync(OegAnimator animator, CancellationToken cancellationToken = default)
+        public async UniTask PlayAsync(Animator animator, CancellationToken cancellationToken = default)
         {
-            animator.Animator.SetBool(_animatorPropertyHash, true);
-            var waitForAnimationEnd = animator.WaitForAnimationEnd(_animatorStateHash);
+            animator.SetBool(_animatorPropertyHash, true);
+            
             try
             {
-                await UniTask.WhenAny(waitForAnimationEnd, UniTask.WaitUntilCanceled(cancellationToken));
+                await animator.WaitForStateExit(AnimatorStateHash, cancellationToken);
             }
             catch (OperationCanceledException)
             {
@@ -34,7 +35,7 @@ namespace _Game.Scripts.Core.Helpers
             }
             finally
             {
-                animator.Animator.SetBool(_animatorPropertyHash, false);
+                animator.SetBool(_animatorPropertyHash, false);
             }
         }
     }

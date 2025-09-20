@@ -633,6 +633,7 @@ GameObject:
   - component: {fileID: 2069001176}
   - component: {fileID: 2069001175}
   - component: {fileID: 2069001178}
+  - component: {fileID: 2069001179}
   m_Layer: 0
   m_Name: SurvivorCharacter
   m_TagString: Untagged
@@ -654,8 +655,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoAttackConfig:
     baseFireRate: 0
-    attackAnimStateName: AutoAttack
+    attackAnimation:
+      animatorPropertyName: 
+      animatorStateName: 
     projectile: {fileID: 0}
+    projectileSpeed: 5
+  dashConfig:
+    dashAnimation:
+      animatorPropertyName: 
+      animatorStateName: 
+    dashDistance: 5
+  receiveHitConfig:
+    hitEffectPrefab: {fileID: 0}
 --- !u!136 &2069001176
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -717,6 +728,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2069001179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069001174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3346ca0848634743a364130ac3cf510b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2069001178}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,7 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using _Game.Scripts.Core;
 using _Game.Scripts.Gameplay.Characters;
 using _Game.Scripts.Gameplay.Core;
+using _Game.Scripts.Gameplay.Interceptors;
 using Cysharp.Threading.Tasks;
 
 namespace _Game.Scripts.Gameplay.States
@@ -32,11 +34,25 @@ namespace _Game.Scripts.Gameplay.States
             // TODO: Show VFX
             
             // Add block damage effect to the character
+            var interceptor = new ReceiveHitReduceDamageInterceptor();
+            var interceptorHandle = StateData.ReceivingCharacter.AddInterceptor(interceptor);
+
+            try
+            {
+                // Wait for the shield duration
+                await UniTask.Delay((int)(StateData.ShieldTime * 1000), cancellationToken: cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                // State was cancelled, proceed to remove the effect
+            }
+            finally
+            {
+                // Remove block damage effect from the character
+                interceptorHandle.Remove();
+                
+            }
             
-            // Wait for the shield duration
-            await UniTask.Delay((int)(StateData.ShieldTime * 1000), cancellationToken: cancellationToken);
-            
-            // Remove block damage effect from the character
         }
     }
 }
