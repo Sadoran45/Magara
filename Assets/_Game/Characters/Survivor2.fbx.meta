@@ -3,7 +3,22 @@ guid: 9bcf82404c4eb9d4ab39ac3cfc06108e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White.001
+    second: {fileID: 2100000, guid: 7468d37a340881c41be1fc10190e1330, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: fa0794e89ce2da943b4175f5fa06b676, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow.001
+    second: {fileID: 2100000, guid: 2f50e16832bf0ac47b3e06e7b00a8acf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -17,192 +32,7 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Armature|Bless_40' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:Spine2' has scale animation that
-      will be discarded.\n\t'mixamorig:LeftArm' has scale animation that will be
-      discarded.\n\nClip 'Armature|Bless_Baked_40' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:Spine2' has scale animation that
-      will be discarded.\n\t'mixamorig:LeftArm' has scale animation that will be
-      discarded.\n\nClip 'Armature|Dash Baked_10' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:Hips' has scale animation that
-      will be discarded.\n\t'mixamorig:LeftArm' has scale animation that will be
-      discarded.\n\t'mixamorig:LeftForeArm' has scale animation that will be discarded.\n\t'mixamorig:LeftHand'
-      has scale animation that will be discarded.\n\t'mixamorig:RightArm' has scale
-      animation that will be discarded.\n\t'mixamorig:RightForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:RightHand' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation that will be discarded.\n\t'mixamorig:LeftLeg'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
-      that will be discarded.\n\t'mixamorig:RightUpLeg' has scale animation that
-      will be discarded.\n\t'mixamorig:RightLeg' has scale animation that will be
-      discarded.\n\t'mixamorig:RightFoot' has scale animation that will be discarded.\n\t'mixamorig:RightToeBase'
-      has scale animation that will be discarded.\n\nClip 'Armature|Dash_10' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:Hips'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftArm' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftHand' has scale animation that will
-      be discarded.\n\t'mixamorig:RightArm' has scale animation that will be discarded.\n\t'mixamorig:RightForeArm'
-      has scale animation that will be discarded.\n\t'mixamorig:RightHand' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftLeg' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftFoot' has scale animation that will be discarded.\n\t'mixamorig:LeftToeBase'
-      has scale animation that will be discarded.\n\t'mixamorig:RightUpLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:RightLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
-      be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Hit Baked 10' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:LeftArm' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftForeArm' has scale animation that
-      will be discarded.\n\t'mixamorig:LeftHand' has scale animation that will be
-      discarded.\n\t'mixamorig:RightArm' has scale animation that will be discarded.\n\t'mixamorig:RightForeArm'
-      has scale animation that will be discarded.\n\t'mixamorig:RightHand' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftLeg' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftFoot' has scale animation that will be discarded.\n\t'mixamorig:LeftToeBase'
-      has scale animation that will be discarded.\n\t'mixamorig:RightUpLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:RightLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
-      be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Hit_10' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'mixamorig:LeftArm' has scale animation that will be
-      discarded.\n\t'mixamorig:LeftForeArm' has scale animation that will be discarded.\n\t'mixamorig:LeftHand'
-      has scale animation that will be discarded.\n\t'mixamorig:RightArm' has scale
-      animation that will be discarded.\n\t'mixamorig:RightForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:RightHand' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation that will be discarded.\n\t'mixamorig:LeftLeg'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
-      that will be discarded.\n\t'mixamorig:RightUpLeg' has scale animation that
-      will be discarded.\n\t'mixamorig:RightLeg' has scale animation that will be
-      discarded.\n\t'mixamorig:RightFoot' has scale animation that will be discarded.\n\t'mixamorig:RightToeBase'
-      has scale animation that will be discarded.\n\nClip 'Armature|Idle Baked' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:Hips'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftArm' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftHand' has scale animation that will
-      be discarded.\n\t'mixamorig:RightArm' has scale animation that will be discarded.\n\t'mixamorig:RightHand'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftUpLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftFoot' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftToeBase' has scale animation that will be discarded.\n\t'mixamorig:RightUpLeg'
-      has scale animation that will be discarded.\n\t'mixamorig:RightLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:RightFoot' has scale animation
-      that will be discarded.\n\t'mixamorig:RightToeBase' has scale animation that
-      will be discarded.\n\nClip 'Armature|Idle_17' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:Hips' has scale animation that
-      will be discarded.\n\t'mixamorig:LeftArm' has scale animation that will be
-      discarded.\n\t'mixamorig:LeftForeArm' has scale animation that will be discarded.\n\t'mixamorig:LeftHand'
-      has scale animation that will be discarded.\n\t'mixamorig:RightArm' has scale
-      animation that will be discarded.\n\t'mixamorig:RightForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:RightHand' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation that will be discarded.\n\t'mixamorig:LeftLeg'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
-      that will be discarded.\n\t'mixamorig:RightUpLeg' has scale animation that
-      will be discarded.\n\t'mixamorig:RightLeg' has scale animation that will be
-      discarded.\n\t'mixamorig:RightFoot' has scale animation that will be discarded.\n\t'mixamorig:RightToeBase'
-      has scale animation that will be discarded.\n\nClip 'Armature|lazer Baked 60'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:Hips'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftArm' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftHand' has scale animation that will
-      be discarded.\n\t'mixamorig:RightArm' has scale animation that will be discarded.\n\t'mixamorig:RightForeArm'
-      has scale animation that will be discarded.\n\t'mixamorig:RightHand' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftLeg' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftFoot' has scale animation that will be discarded.\n\t'mixamorig:LeftToeBase'
-      has scale animation that will be discarded.\n\t'mixamorig:RightUpLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:RightLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
-      be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Lazer_60' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'mixamorig:Hips' has scale animation that will be discarded.\n\t'mixamorig:LeftArm'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftForeArm' has
-      scale animation that will be discarded.\n\t'mixamorig:LeftHand' has scale animation
-      that will be discarded.\n\t'mixamorig:RightArm' has scale animation that will
-      be discarded.\n\t'mixamorig:RightForeArm' has scale animation that will be
-      discarded.\n\t'mixamorig:RightHand' has scale animation that will be discarded.\n\t'mixamorig:LeftUpLeg'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation that
-      will be discarded.\n\t'mixamorig:RightUpLeg' has scale animation that will
-      be discarded.\n\t'mixamorig:RightLeg' has scale animation that will be discarded.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n\t'mixamorig:RightToeBase' has
-      scale animation that will be discarded.\n\nClip 'Armature|Run backward baked'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:Hips'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftArm' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftHand' has scale animation that will
-      be discarded.\n\t'mixamorig:RightArm' has scale animation that will be discarded.\n\t'mixamorig:RightForeArm'
-      has scale animation that will be discarded.\n\t'mixamorig:RightHand' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftLeg' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftFoot' has scale animation that will be discarded.\n\t'mixamorig:LeftToeBase'
-      has scale animation that will be discarded.\n\t'mixamorig:RightUpLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:RightLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
-      be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Run Backwards_17' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'mixamorig:Hips' has scale animation that
-      will be discarded.\n\t'mixamorig:LeftArm' has scale animation that will be
-      discarded.\n\t'mixamorig:LeftForeArm' has scale animation that will be discarded.\n\t'mixamorig:LeftHand'
-      has scale animation that will be discarded.\n\t'mixamorig:RightArm' has scale
-      animation that will be discarded.\n\t'mixamorig:RightForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:RightHand' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation that will be discarded.\n\t'mixamorig:LeftLeg'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation
-      that will be discarded.\n\t'mixamorig:RightUpLeg' has scale animation that
-      will be discarded.\n\t'mixamorig:RightLeg' has scale animation that will be
-      discarded.\n\t'mixamorig:RightFoot' has scale animation that will be discarded.\n\t'mixamorig:RightToeBase'
-      has scale animation that will be discarded.\n\nClip 'Armature|Run Baked' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:Hips'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftArm' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftForeArm' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftHand' has scale animation that will
-      be discarded.\n\t'mixamorig:RightArm' has scale animation that will be discarded.\n\t'mixamorig:RightForeArm'
-      has scale animation that will be discarded.\n\t'mixamorig:RightHand' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftUpLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftLeg' has scale animation that will
-      be discarded.\n\t'mixamorig:LeftFoot' has scale animation that will be discarded.\n\t'mixamorig:LeftToeBase'
-      has scale animation that will be discarded.\n\t'mixamorig:RightUpLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:RightLeg' has scale animation
-      that will be discarded.\n\t'mixamorig:RightFoot' has scale animation that will
-      be discarded.\n\t'mixamorig:RightToeBase' has scale animation that will be
-      discarded.\n\nClip 'Armature|Run_17' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'mixamorig:Hips' has scale animation that will be discarded.\n\t'mixamorig:LeftArm'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftForeArm' has
-      scale animation that will be discarded.\n\t'mixamorig:LeftHand' has scale animation
-      that will be discarded.\n\t'mixamorig:RightArm' has scale animation that will
-      be discarded.\n\t'mixamorig:RightForeArm' has scale animation that will be
-      discarded.\n\t'mixamorig:RightHand' has scale animation that will be discarded.\n\t'mixamorig:LeftUpLeg'
-      has scale animation that will be discarded.\n\t'mixamorig:LeftLeg' has scale
-      animation that will be discarded.\n\t'mixamorig:LeftFoot' has scale animation
-      that will be discarded.\n\t'mixamorig:LeftToeBase' has scale animation that
-      will be discarded.\n\t'mixamorig:RightUpLeg' has scale animation that will
-      be discarded.\n\t'mixamorig:RightLeg' has scale animation that will be discarded.\n\t'mixamorig:RightFoot'
-      has scale animation that will be discarded.\n\t'mixamorig:RightToeBase' has
-      scale animation that will be discarded.\n\nClip 'Armature|Shoot' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightHand' has
-      scale animation that will be discarded.\n\nClip 'Armature|Shoot baked' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightHand'
-      has scale animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0

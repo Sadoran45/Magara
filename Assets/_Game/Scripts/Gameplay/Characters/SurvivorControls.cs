@@ -11,7 +11,17 @@ namespace _Game.Scripts.Gameplay.Characters
         {
             HandleMovement();
 
+            HandleDash();
+            
             HandleAutoAttack();
+        }
+
+        private void HandleDash()
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                playerMotor.Dash().Forget();
+            }
         }
 
         private void HandleAutoAttack()
@@ -21,8 +31,6 @@ namespace _Game.Scripts.Gameplay.Characters
             RaycastHit hit;
             if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, planeLayerMask))
             {
-                Debug.Log("Hit position: "  + hit.point);
-                
                 var simplifiedHitPoint = new Vector3(hit.point.x, 0, hit.point.z);
                 var simplifiedPosition = new Vector3(transform.position.x, 0, transform.position.z);
                 

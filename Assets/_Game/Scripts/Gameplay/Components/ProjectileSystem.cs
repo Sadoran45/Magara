@@ -8,7 +8,7 @@ namespace _Game.Scripts.Gameplay.Components
 {
     public class ProjectileSystem : MonoBehaviour, IBaseDamage
     {
-        public Subject<ProjectileHitData> OnHit { get; private set; }
+        public Subject<HittableHitData> OnHit { get; private set; }
         
         [SerializeField] private AnimationCurve speedMultiplierOverTime = AnimationCurve.Linear(0, 1, 1, 1);
         [SerializeField] private float hitBoxRadius = 0.2f;
@@ -28,7 +28,7 @@ namespace _Game.Scripts.Gameplay.Components
         public void Launch(Vector3 direction, float speed, params GameObject[] ignoreColliders)
         {
             OnHit?.Dispose();
-            OnHit = new Subject<ProjectileHitData>();
+            OnHit = new Subject<HittableHitData>();
             
             // Implement projectile movement logic here
             // For simplicity, we just set the forward direction
@@ -71,7 +71,7 @@ namespace _Game.Scripts.Gameplay.Components
 
         private void OnHitSomething(Collider other)
         {
-            var hitData = new ProjectileHitData(
+            var hitData = new HittableHitData(
                 target: other.gameObject,
                 source: this,
                 hitPoint: other.ClosestPoint(transform.position),

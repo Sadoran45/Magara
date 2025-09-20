@@ -42,5 +42,10 @@ namespace _Game.Scripts.Core.Helpers
             {
             }
         }
+
+        public void Cancel(Animator animator)
+        {
+            animator.SetTrigger(CancelPropertyHash);
+        }
     }
 }

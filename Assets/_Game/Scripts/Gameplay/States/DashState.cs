@@ -15,8 +15,7 @@ namespace _Game.Scripts.Gameplay.States
         {
             public CancellableAnimation dashAnimation;
             public float dashDistance = 5f;
-            
-            
+            public float dashSpeed = 10f;
         }
 
         public class Data
@@ -40,9 +39,24 @@ namespace _Game.Scripts.Gameplay.States
             StateData = data;
         }
         
-        public UniTask ExecuteAsync(CancellationToken cancellationToken = default)
+        public async UniTask ExecuteAsync(CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            _owner.InterceptMovement();
+            _config.dashAnimation.PlayAsync(_owner.Animator, cancellationToken).Forget();
+
+            var velocity = StateData.Direction * _config.dashSpeed;
+            var movedDistance = 0f;
+            while (movedDistance < _config.dashDistance)
+            {
+                var movement = velocity * Time.fixedDeltaTime;
+                movedDistance += movement.magnitude;
+                _owner.Rigidbody.MovePosition(_owner.Rigidbody.position + movement);
+                await UniTask.WaitForFixedUpdate();
+            }
+            
+            _owner.LetMovement();
+            // REFACTOR -> AnimationState class instead of cancellable
+            _config.dashAnimation.Cancel(_owner.Animator);
         }
     }
 }

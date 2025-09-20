@@ -30,9 +30,9 @@ namespace _Game.Scripts.Gameplay.Characters
             await StartState(state);
         }
 
-        public async UniTaskVoid Dash(Vector3 direction)
+        public async UniTaskVoid Dash()
         {
-            var data = new DashState.Data(direction);
+            var data = new DashState.Data(aimDirection);
             var state = new DashState(this, dashConfig, data);
             
             await StartState(state);

@@ -16,6 +16,7 @@ namespace _Game.Scripts.Gameplay.Characters
         [SerializeField] private Animator animator;
         
         public Animator Animator => animator;
+        public Rigidbody Rigidbody => rb;
         
         #region Locomotion
 
@@ -28,7 +29,8 @@ namespace _Game.Scripts.Gameplay.Characters
         
         private Vector3 _movementInput;
         protected Vector3 aimDirection;
-        private float _targetRotationOffset;
+
+        private bool _isMovingEnabled = true;
         
         private void Update()
         {
@@ -37,6 +39,8 @@ namespace _Game.Scripts.Gameplay.Characters
 
         private void FixedUpdate()
         {
+            if (!_isMovingEnabled) return;
+            
             // --- Move ---
             Vector3 velocity = _movementInput * movementSpeed;
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
@@ -68,7 +72,17 @@ namespace _Game.Scripts.Gameplay.Characters
             aimDirection = direction;
         }
 
-        public void OnProjectileHit(ProjectileHitData data)
+        public void InterceptMovement()
+        {
+            _isMovingEnabled = false;
+        }
+        // TODO: Refactor into using stackable interception
+        public void LetMovement()
+        {
+            _isMovingEnabled = true;
+        }
+        
+        public void OnProjectileHit(HittableHitData data)
         {
             var receiveHitData = new ReceiveHitState.Data(data.Source.BaseDamage);
             var receiveHitState = new ReceiveHitState(this, receiveHitConfig, receiveHitData);
