@@ -69,6 +69,8 @@ namespace _Game.Scripts.Gameplay.Characters
         {
             if (!IsAlive) return;
 
+            Debug.Log("Enemy hit received");
+            
             // Take damage based on the damage provider's base damage
             float damageAmount = data.DamageProvider.BaseDamage;
             TakeDamage(damageAmount);

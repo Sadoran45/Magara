@@ -11,6 +11,7 @@ namespace _Game.Scripts.Gameplay.AI
 {
     public enum EnemyState
     {
+        None,
         AttackToCore,
         AttackToPlayer,
         Attacking,
@@ -42,7 +43,7 @@ namespace _Game.Scripts.Gameplay.AI
         [SerializeField] private bool showDebugGizmos = true;
         
         // State Management
-        public EnemyState CurrentState { get; private set; } = EnemyState.AttackToCore;
+        public EnemyState CurrentState { get; private set; } = EnemyState.None;
         public Transform CurrentTarget { get; private set; }
         public float BaseDamage => baseDamage;
         
@@ -248,12 +249,12 @@ namespace _Game.Scripts.Gameplay.AI
         
         private async UniTask ExecuteAttackToCoreState(CancellationToken cancellationToken)
         {
-            SetTarget(coreTarget);
-            
             while (!cancellationToken.IsCancellationRequested && CurrentState == EnemyState.AttackToCore)
             {
+                Debug.Log("Core target: " + (coreTarget != null ? coreTarget.name : "null"));
                 if (coreTarget != null)
                 {
+                    SetTarget(coreTarget);
                     await MoveToTarget(coreTarget.position, cancellationToken);
                 }
                 
@@ -329,6 +330,7 @@ namespace _Game.Scripts.Gameplay.AI
         
         private async UniTask MoveToTarget(Vector3 targetPosition, CancellationToken cancellationToken)
         {
+            Debug.Log("Moving to target: " + targetPosition);
             Vector3 direction = (targetPosition - transform.position).normalized;
             direction.y = 0; // Keep movement on horizontal plane
             
@@ -347,7 +349,6 @@ namespace _Game.Scripts.Gameplay.AI
                 );
             }
             
-            await UniTask.Yield(cancellationToken);
         }
         
         private async UniTask PerformAttack(CancellationToken cancellationToken)
@@ -356,6 +357,7 @@ namespace _Game.Scripts.Gameplay.AI
             
             // Trigger attack animation here
             // Example: GetComponent<Animator>().SetTrigger("Attack");
+            
             
             // Wait for attack duration (animation length)
             await UniTask.Delay(TimeSpan.FromSeconds(attackDuration), cancellationToken: cancellationToken);
@@ -366,7 +368,7 @@ namespace _Game.Scripts.Gameplay.AI
                 Debug.Log("Dealing damage to hittable!");
                 var hittable = _currentHittable.GetComponent<IHittable>();
 
-                var hitData = new HittableHitData(_currentHittable.gameObject, this,
+                var hitData = new HittableHitData(transform, _currentHittable.gameObject, this,
                     _currentHittable.transform.position, _currentHittable.transform.rotation * Vector3.forward);
                 hittable.OnReceivedHit(hitData);
             }
@@ -415,7 +417,7 @@ namespace _Game.Scripts.Gameplay.AI
             }
             
             // Handle AI response to being hit
-            if (data.Target != null && data.Target.CompareTag("Player"))
+            if (data.Source != null && data.Source.TryGetComponent<PlayerMotor>(out _))
             {
                 var playerTransform = data.Target.transform;
                 OnHitByPlayer(playerTransform);

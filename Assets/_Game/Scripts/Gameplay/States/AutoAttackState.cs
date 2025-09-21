@@ -68,6 +68,7 @@ namespace _Game.Scripts.Gameplay.States
 
             try
             {
+                hitter.SetOwner(_owner.transform);
                 hitter.Launch(this, StateData.Direction, ignoreColliders: _owner.gameObject);
                 var hitTask = hitter.OnHit.FirstAsync(hitter.destroyCancellationToken);
 

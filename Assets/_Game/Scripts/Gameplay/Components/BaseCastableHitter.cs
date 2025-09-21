@@ -14,7 +14,7 @@ namespace _Game.Scripts.Gameplay.Components
         protected GameObject[] ignoreColliders;
         
         protected Collider[] HitColliders { get; private set; } = new Collider[10];
-        
+        private Transform _owner;
         
         public virtual void Launch(IBaseDamageProvider baseDamageProvider, Vector3 direction, params GameObject[] ignoreColliders)
         {
@@ -42,9 +42,15 @@ namespace _Game.Scripts.Gameplay.Components
                     break;
             }
         }
+
+        public void SetOwner(Transform owner)
+        {
+            _owner = owner;
+        }
         public virtual void FireOnHit(Collider other)
         {
             var hitData = new HittableHitData(
+                source: _owner,
                 target: other.gameObject,
                 damageProvider: _baseDamageProvider,
                 hitPoint: other.ClosestPoint(transform.position),

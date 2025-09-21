@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.94
+      value: 13.904098
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000000059604645
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.35
+      value: 4.653214
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalRotation.w
@@ -164,7 +164,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -179,7 +179,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &2673403944435849759
 MonoBehaviour:

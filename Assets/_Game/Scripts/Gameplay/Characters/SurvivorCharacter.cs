@@ -49,7 +49,7 @@ namespace _Game.Scripts.Gameplay.Characters
         public async UniTaskVoid Dash()
         {
             var data = new DashState.Data(aimDirection);
-            var state = new DashState(this, dashConfig, data, audioSource);
+            var state = new DashState(this, dashConfig, data);
             
             await StartState(state);
         }
