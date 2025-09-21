@@ -73,6 +73,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   hitBoxRadius: 0.05
   maxLifetime: 7
+  baseSpeed: 12
   muzzleEffect: {fileID: 4706117423088222620}
   impactEffect: {fileID: 8149910485845977988}
 --- !u!1001 &4706117423103599872
@@ -222,7 +223,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8294600, guid: ab277be0b43f1824090ab10e4ce64cef, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

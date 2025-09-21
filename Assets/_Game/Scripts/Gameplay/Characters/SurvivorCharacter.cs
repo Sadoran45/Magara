@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using _Game.Scripts.Gameplay.Core;
 using _Game.Scripts.Gameplay.States;
+using _Game.Scripts.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -13,8 +15,26 @@ namespace _Game.Scripts.Gameplay.Characters
         [SerializeField] private AutoAttackState.Config autoAttackConfig;
         [SerializeField] private DashState.Config dashConfig;
         [SerializeField] private SurvivorLaserAttackState.Config laserAttackConfig;
+        [SerializeField] private SendEffectState.Config sendShieldEffectConfig;
+
+        [SerializeField] private HealthSystem healthSystem;
+        [SerializeField] private EnergySystem energySystem;
+
+        [SerializeField] private SurvivorHUD healthHUD;
         
-        
+        public HealthSystem HealthSystem => healthSystem;
+        public EnergySystem EnergySystem => energySystem;
+
+        private void Awake()
+        {
+            if(healthHUD) healthHUD.Initialize(this);
+        }
+
+        private void Update()
+        {
+            healthSystem.UpdateRegeneration(Time.deltaTime);
+        }
+
         public async UniTaskVoid AutoAttack()
         {
             
@@ -36,6 +56,22 @@ namespace _Game.Scripts.Gameplay.Characters
         public async UniTaskVoid LaserAttack()
         {
             var state = new SurvivorLaserAttackState(this, laserAttackConfig, new SurvivorLaserAttackState.Data());
+            
+            await StartState(state);
+        }
+
+        public async UniTaskVoid SendShieldEffect()
+        {
+            var playerMotors = FindObjectsByType<PlayerMotor>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            var otherPlayerMotor = playerMotors.FirstOrDefault(x => x != this);
+            if (!otherPlayerMotor)
+            {
+                Debug.Log("Couldn't find other player motor");
+                return;
+            }
+
+            var data = new SendEffectState.Data(otherPlayerMotor);
+            var state = new SendEffectState(this, sendShieldEffectConfig, data);
             
             await StartState(state);
         }

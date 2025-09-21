@@ -5,7 +5,8 @@ using UnityEngine;
 namespace _Game.Scripts.Gameplay.Characters
 {
     public class AvengerCharacter : PlayerMotor
-    {
+    {   
+        public AudioSource audioSource;
         [SerializeField] private AutoAttackState.Config autoAttackConfig;
         
         
@@ -14,7 +15,7 @@ namespace _Game.Scripts.Gameplay.Characters
             
             var data = new AutoAttackState.Data(aimDirection);
             
-            var state = new AutoAttackState(this, autoAttackConfig, data);
+            var state = new AutoAttackState(this, autoAttackConfig, data, audioSource);
 
             await StartState(state);
         }
