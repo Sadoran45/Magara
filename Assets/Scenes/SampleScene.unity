@@ -659,6 +659,54 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &386622093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386622094}
+  - component: {fileID: 386622095}
+  m_Layer: 0
+  m_Name: SoulCurve_Survivor_Core
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &386622094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386622093}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &386622095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386622093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3cd2239a03456b8307f7e12950d723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p0: {fileID: 647104331}
+  p1: {fileID: 506533944}
+  p2: {fileID: 1861120729}
+  p3: {fileID: 48338085}
 --- !u!1 &400383722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1217,54 @@ MonoBehaviour:
   rebaseOnEnable: 1
   seed: 12345
   randomizePhase: 1
+--- !u!1 &536966272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 536966274}
+  - component: {fileID: 536966273}
+  m_Layer: 0
+  m_Name: SoulCurve_Avenger_Core
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &536966273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536966272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3cd2239a03456b8307f7e12950d723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p0: {fileID: 888504029}
+  p1: {fileID: 927230930}
+  p2: {fileID: 1861120729}
+  p3: {fileID: 48338085}
+--- !u!4 &536966274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536966272}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &580555480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 465978d82f12d7d42866ce996472402f, type: 3}
@@ -4821,6 +4917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 712290091}
+  toCoreCurveHolder: {fileID: 536966273}
   rb: {fileID: 1437072467}
   movementSpeed: 3
   shootingAngle: 110
@@ -5083,6 +5180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 800393532}
+  toCoreCurveHolder: {fileID: 386622095}
   rb: {fileID: 2069001178}
   movementSpeed: 6
   shootingAngle: 110
@@ -5113,6 +5211,8 @@ MonoBehaviour:
     hitter: {fileID: 2695439409522045574, guid: 78e479522649eb04295ddb7182c8e39c, type: 3}
     hitDelay: 0.6
     baseDamage: 52
+  sendShieldEffectConfig:
+    shieldSendEffectPrefab: {fileID: 1829040919194171900, guid: 2cdcd3ad43b699d47bf87d796a716b12, type: 3}
 --- !u!136 &2069001176
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5325,3 +5425,5 @@ SceneRoots:
   - {fileID: 2146178257}
   - {fileID: 957259057}
   - {fileID: 459647220}
+  - {fileID: 386622094}
+  - {fileID: 536966274}

@@ -13,6 +13,7 @@ namespace _Game.Scripts.Gameplay.Characters
         [SerializeField] private AutoAttackState.Config autoAttackConfig;
         [SerializeField] private DashState.Config dashConfig;
         [SerializeField] private SurvivorLaserAttackState.Config laserAttackConfig;
+        [SerializeField] private SendEffectState.Config sendShieldEffectConfig;
         
         
         public async UniTaskVoid AutoAttack()
@@ -36,6 +37,22 @@ namespace _Game.Scripts.Gameplay.Characters
         public async UniTaskVoid LaserAttack()
         {
             var state = new SurvivorLaserAttackState(this, laserAttackConfig, new SurvivorLaserAttackState.Data());
+            
+            await StartState(state);
+        }
+
+        public async UniTaskVoid SendShieldEffect()
+        {
+            var playerMotors = FindObjectsByType<PlayerMotor>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            var otherPlayerMotor = playerMotors.FirstOrDefault(x => x != this);
+            if (!otherPlayerMotor)
+            {
+                Debug.Log("Couldn't find other player motor");
+                return;
+            }
+
+            var data = new SendEffectState.Data(otherPlayerMotor);
+            var state = new SendEffectState(this, sendShieldEffectConfig, data);
             
             await StartState(state);
         }

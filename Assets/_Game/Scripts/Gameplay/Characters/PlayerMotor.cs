@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using _Game.Scripts.Core;
+using _Game.Scripts.Core.Components;
 using _Game.Scripts.Gameplay.Components;
 using _Game.Scripts.Gameplay.Core;
 using _Game.Scripts.Gameplay.States;
@@ -14,9 +15,11 @@ namespace _Game.Scripts.Gameplay.Characters
     public abstract class PlayerMotor : MonoBehaviour, IStateContainer, IHittable
     {
         [SerializeField] private Animator animator;
+        [SerializeField] private BezierCurveHolder toCoreCurveHolder;
         
         public Animator Animator => animator;
         public Rigidbody Rigidbody => rb;
+        public BezierCurveHolder ToCoreCurveHolder => toCoreCurveHolder;
         
         #region Locomotion
 

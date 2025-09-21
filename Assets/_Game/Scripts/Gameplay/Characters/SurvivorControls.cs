@@ -20,6 +20,12 @@ namespace _Game.Scripts.Gameplay.Characters
             {
                 playerMotor.LaserAttack().Forget();
             }
+            
+            // Test Send shield
+            if (Input.GetMouseButtonDown(2))
+            {
+                playerMotor.SendShieldEffect().Forget();
+            }
         }
 
         private void HandleDash()
