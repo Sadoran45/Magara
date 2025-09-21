@@ -6172,6 +6172,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6695436431884235716, guid: f30fc07a789f1eb4fb9f37c1e7c38980, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3140960067425996075}
+    - targetCorrespondingSourceObject: {fileID: 6695436431884235716, guid: f30fc07a789f1eb4fb9f37c1e7c38980, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3140960067425996076}
   m_SourcePrefab: {fileID: 100100000, guid: f30fc07a789f1eb4fb9f37c1e7c38980, type: 3}
 --- !u!4 &3140960067425996070 stripped
 Transform:
@@ -6227,6 +6230,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0e10a70ac2d174e86b4c5b4319e9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3140960067425996076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994567394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2350c243b90aa4ea2154390c28f067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthSlider: {fileID: 274023527}
+  mob1DamagePerSecond: 3
+  mob2DamagePerSecond: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
