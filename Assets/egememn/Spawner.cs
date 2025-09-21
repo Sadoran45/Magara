@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -24,12 +25,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private bool autoStartSpawning = true;
     
+    [Title("UI Settings")]
+    [InfoBox("Assign Legacy UI Text component for wave messages")]
+    [SerializeField] private Text waveText;
+    
     [Title("Runtime Info")]
     [ReadOnly] [SerializeField] private int currentWaveIndex = 0;
     [ReadOnly] [SerializeField] private int currentEnemyIndex = 0;
     [ReadOnly] [SerializeField] private bool levelCompleted = false;
+    [ReadOnly] [SerializeField] private bool waitingForWaveCompletion = false;
     
     private Coroutine spawnCoroutine;
+    private List<GameObject> activeEnemies = new List<GameObject>();
     
     void Start()
     {
@@ -87,6 +94,13 @@ public class Spawner : MonoBehaviour
         currentWaveIndex = 0;
         currentEnemyIndex = 0;
         levelCompleted = false;
+        waitingForWaveCompletion = false;
+        
+        // Clear UI
+        ClearWaveText();
+        
+        // Clear all enemies
+        ClearAllEnemies();
     }
     
     private bool CanStartSpawning()
@@ -95,7 +109,111 @@ public class Spawner : MonoBehaviour
                levelData.waves != null && 
                levelData.waves.Count > 0 && 
                spawnPoints.Count > 0 &&
-               !levelCompleted;
+               !levelCompleted &&
+               !waitingForWaveCompletion;
+    }
+    
+    // UI Methods
+    private void ShowWaveCountdown(int waveNumber)
+    {
+        StartCoroutine(WaveCountdownCoroutine(waveNumber));
+    }
+    
+    private IEnumerator WaveCountdownCoroutine(int waveNumber)
+    {
+        if (waveText == null) yield break;
+        
+        // Wave başlangıç mesajı
+        waveText.text = $"Wave {waveNumber} is Coming";
+        yield return new WaitForSeconds(1f);
+        
+        // Geri sayım
+        for (int i = 3; i >= 1; i--)
+        {
+            waveText.text = $"Wave {waveNumber} is Coming {i}";
+            yield return new WaitForSeconds(1f);
+        }
+        
+        // Countdown bitişi
+        waveText.text = "";
+    }
+    
+    private void ShowWaveCompleted()
+    {
+        if (waveText != null)
+        {
+            StartCoroutine(ShowWaveCompletedCoroutine());
+        }
+    }
+    
+    private IEnumerator ShowWaveCompletedCoroutine()
+    {
+        waveText.text = "Wave Completed";
+        yield return new WaitForSeconds(2f);
+        waveText.text = "";
+    }
+    
+    private void ShowLevelCompleted()
+    {
+        if (waveText != null)
+        {
+            waveText.text = "Level Completed!";
+        }
+    }
+    
+    private void ClearWaveText()
+    {
+        if (waveText != null)
+        {
+            waveText.text = "";
+        }
+    }
+    
+    // Enemy Management Methods
+    private void RegisterEnemy(GameObject enemy)
+    {
+        if (enemy != null && !activeEnemies.Contains(enemy))
+        {
+            activeEnemies.Add(enemy);
+            Debug.Log($"Enemy registered: {enemy.name}. Total active enemies: {activeEnemies.Count}");
+        }
+    }
+    
+    private void UnregisterEnemy(GameObject enemy)
+    {
+        if (activeEnemies.Contains(enemy))
+        {
+            activeEnemies.Remove(enemy);
+            Debug.Log($"Enemy unregistered: {enemy.name}. Remaining enemies: {activeEnemies.Count}");
+            
+            // Clean up null references
+            activeEnemies.RemoveAll(e => e == null);
+            
+            CheckWaveCompletion();
+        }
+    }
+    
+    private void CheckWaveCompletion()
+    {
+        if (waitingForWaveCompletion && activeEnemies.Count == 0)
+        {
+            Debug.Log("All enemies eliminated - Wave completed!");
+            waitingForWaveCompletion = false;
+            ShowWaveCompleted();
+        }
+    }
+    
+    private void ClearAllEnemies()
+    {
+        foreach (GameObject enemy in activeEnemies)
+        {
+            if (enemy != null)
+            {
+                Destroy(enemy);
+            }
+        }
+        activeEnemies.Clear();
+        waitingForWaveCompletion = false;
     }
     
     private void ValidateConfiguration()
@@ -114,6 +232,11 @@ public class Spawner : MonoBehaviour
         {
             Debug.LogWarning("Some enemy prefabs are not assigned!");
         }
+        
+        if (waveText == null)
+        {
+            Debug.LogWarning("Wave Text is not assigned! UI messages will not be displayed.");
+        }
     }
     
     private IEnumerator SpawnWaves()
@@ -125,8 +248,19 @@ public class Spawner : MonoBehaviour
             WaveData currentWave = levelData.waves[currentWaveIndex];
             Debug.Log($"Starting Wave {currentWave.waveNumber} with {currentWave.enemySequence.Count} enemies");
             
+            // Show wave countdown
+            ShowWaveCountdown(currentWave.waveNumber);
+            
+            // Wait for countdown to finish (4 seconds total: 1 + 3 countdown)
+            yield return new WaitForSeconds(4f);
+            
+            // Clear enemy list and start tracking this wave
+            activeEnemies.Clear();
+            waitingForWaveCompletion = false;
+            
             currentEnemyIndex = 0;
             
+            // Spawn all enemies in the wave
             while (currentEnemyIndex < currentWave.enemySequence.Count)
             {
                 SpawnSequenceItem currentItem = currentWave.enemySequence[currentEnemyIndex];
@@ -154,20 +288,38 @@ public class Spawner : MonoBehaviour
                 currentEnemyIndex++;
             }
             
+            Debug.Log($"All enemies spawned for Wave {currentWave.waveNumber}. Waiting for wave completion...");
+            
+            // Wait until all enemies are defeated
+            waitingForWaveCompletion = true;
+            while (waitingForWaveCompletion)
+            {
+                // Check for destroyed enemies periodically
+                activeEnemies.RemoveAll(e => e == null);
+                CheckWaveCompletion();
+                
+                yield return new WaitForSeconds(0.1f); // Check every 100ms
+            }
+            
             Debug.Log($"Wave {currentWave.waveNumber} completed!");
             currentWaveIndex++;
+            
+            // Wait a bit after wave completed message
+            yield return new WaitForSeconds(2f);
             
             // Optional: Add delay between waves
             if (currentWaveIndex < levelData.waves.Count)
             {
                 Debug.Log("Preparing next wave...");
-                yield return new WaitForSeconds(spawnInterval * 2f); // 2x interval between waves
+                yield return new WaitForSeconds(1f);
             }
         }
         
         // All waves completed
         levelCompleted = true;
         Debug.Log("All waves completed! Level finished.");
+        
+        ShowLevelCompleted();
     }
     
     private void SpawnEnemy(EnemyType enemyType)
@@ -201,7 +353,24 @@ public class Spawner : MonoBehaviour
         // Spawn enemy
         GameObject spawnedEnemy = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
         
+        // Register enemy for tracking
+        RegisterEnemy(spawnedEnemy);
+        
+        // Add simple destroy handler for when enemy dies
+        StartCoroutine(MonitorEnemyLife(spawnedEnemy));
+        
         Debug.Log($"Successfully spawned {enemyType} at {spawnPoint.name} (Position: {spawnPoint.position})");
+    }
+    
+    private IEnumerator MonitorEnemyLife(GameObject enemy)
+    {
+        while (enemy != null)
+        {
+            yield return new WaitForSeconds(0.5f); // Check every 500ms
+        }
+        
+        // Enemy was destroyed, unregister it
+        UnregisterEnemy(enemy);
     }
     
     private GameObject GetEnemyPrefab(EnemyType enemyType)
@@ -244,5 +413,25 @@ public class Spawner : MonoBehaviour
     public int GetTotalWaves()
     {
         return levelData != null ? levelData.waves.Count : 0;
+    }
+    
+    // Test Methods
+    [Button("Kill All Enemies", ButtonSizes.Medium)]
+    [GUIColor(0.8f, 0.4f, 0.4f)]
+    [EnableIf("@activeEnemies.Count > 0")]
+    public void KillAllEnemies()
+    {
+        Debug.Log($"Killing {activeEnemies.Count} active enemies");
+        ClearAllEnemies();
+    }
+    
+    [Button("Force Complete Wave", ButtonSizes.Medium)]
+    [GUIColor(0.4f, 0.8f, 0.8f)]
+    [EnableIf("waitingForWaveCompletion")]
+    public void ForceCompleteWave()
+    {
+        Debug.Log("Force completing current wave");
+        waitingForWaveCompletion = false;
+        ShowWaveCompleted();
     }
 }

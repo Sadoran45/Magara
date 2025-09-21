@@ -17,7 +17,7 @@ namespace _Game.Scripts.Gameplay.AI
         Dead
     }
     
-    public class EnemyAIStateMachine : MonoBehaviour, IBaseDamageProvider 
+    public class EnemyAIStateMachine : MonoBehaviour, IBaseDamageProvider, IHittable
     {
         [Header("Enemy Config")] [SerializeField]
         private float baseDamage = 10f;
@@ -62,11 +62,19 @@ namespace _Game.Scripts.Gameplay.AI
         // Components
         private Rigidbody rb;
         private Collider col;
+        private EnemyCharacter enemyCharacter;
         
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             col = GetComponent<Collider>();
+            enemyCharacter = GetComponent<EnemyCharacter>();
+            
+            // Set Rigidbody to kinematic for manual movement control
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
             
             // Find core if not assigned
             if (coreTarget == null)
@@ -273,9 +281,7 @@ namespace _Game.Scripts.Gameplay.AI
             
             SetTarget(_currentHittable);
             
-            // Stop all movement during attack
-            if (rb != null)
-                rb.linearVelocity = Vector3.zero;
+            // Movement is already stopped since we're not calling MoveToTarget
             
             OnAttackStarted?.Invoke();
 
@@ -313,9 +319,7 @@ namespace _Game.Scripts.Gameplay.AI
         }
         private async UniTask ExecuteDeadState(CancellationToken cancellationToken)
         {
-            // Stop all movement
-            if (rb != null)
-                rb.linearVelocity = Vector3.zero;
+            // Movement is already stopped since we're not calling MoveToTarget
             
             SetTarget(null);
             
@@ -325,13 +329,12 @@ namespace _Game.Scripts.Gameplay.AI
         
         private async UniTask MoveToTarget(Vector3 targetPosition, CancellationToken cancellationToken)
         {
-            if (rb == null) return;
-            
             Vector3 direction = (targetPosition - transform.position).normalized;
             direction.y = 0; // Keep movement on horizontal plane
             
-            // Move towards target
-            rb.linearVelocity = direction * moveSpeed;
+            // Kinematic movement - move transform directly
+            Vector3 movement = direction * moveSpeed * Time.deltaTime;
+            transform.position += movement;
             
             // Rotate towards target
             if (direction != Vector3.zero)
@@ -400,6 +403,23 @@ namespace _Game.Scripts.Gameplay.AI
         public void Die()
         {
             _ = ChangeState(EnemyState.Dead);
+        }
+        
+        // IHittable Implementation
+        public void OnReceivedHit(HittableHitData data)
+        {
+            // If we have an EnemyCharacter component, delegate to it
+            if (enemyCharacter != null)
+            {
+                enemyCharacter.OnReceivedHit(data);
+            }
+            
+            // Handle AI response to being hit
+            if (data.Target != null && data.Target.CompareTag("Player"))
+            {
+                var playerTransform = data.Target.transform;
+                OnHitByPlayer(playerTransform);
+            }
         }
         
         private void OnDestroy()
