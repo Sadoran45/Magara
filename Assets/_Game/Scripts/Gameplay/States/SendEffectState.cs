@@ -72,7 +72,13 @@ namespace _Game.Scripts.Gameplay.States
             }
             
             // TODO: Dissolve shield effect
+            Object.Destroy(shieldEffect);
             
+            // Notify the target that the effect has arrived
+            if (StateData.Target is AvengerCharacter avengerCharacter)
+            {
+                avengerCharacter.ReceiveShield(3f).Forget();
+            }
         }
     }
 }
