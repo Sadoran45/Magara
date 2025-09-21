@@ -4,26 +4,35 @@ using _Game.Scripts.Core;
 using _Game.Scripts.Gameplay.Characters;
 using _Game.Scripts.Gameplay.Interceptors;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _Game.Scripts.Gameplay.States
 {
     public class ReceiveShieldState : IState
     {
+        [Serializable]
+        public class Config
+        {
+            public GameObject receiveShieldEffectPrefab;
+        }
         public class Data
         {
-            public SurvivorCharacter ReceivingCharacter { get; }
+            public AvengerCharacter ReceivingCharacter { get; }
             public float ShieldTime { get; }
             
-            public Data(SurvivorCharacter receivingCharacter, float shieldTime)
+            public Data(AvengerCharacter receivingCharacter, float shieldTime)
             {
                 ReceivingCharacter = receivingCharacter;
                 ShieldTime = shieldTime;
             }
         }
-        
+
+        private Config _config;
         public Data StateData { get; }
-        public ReceiveShieldState(Data data)
+        public ReceiveShieldState(Config config, Data data)
         {
+            _config = config;
             StateData = data;
         }
 
@@ -31,6 +40,9 @@ namespace _Game.Scripts.Gameplay.States
         public async UniTask ExecuteAsync(CancellationToken cancellationToken = default)
         {
             // TODO: Show VFX
+            var spawnedEffect = Object.Instantiate(_config.receiveShieldEffectPrefab,
+                StateData.ReceivingCharacter.transform.position + Vector3.up * 0.5f,
+                Quaternion.identity);
             
             // Add block damage effect to the character
             var interceptor = new ReceiveHitReduceDamageInterceptor();
@@ -50,6 +62,11 @@ namespace _Game.Scripts.Gameplay.States
                 // Remove block damage effect from the character
                 interceptorHandle.Remove();
                 
+                // Clean up VFX
+                if (spawnedEffect != null)
+                {
+                    Object.Destroy(spawnedEffect);
+                }
             }
             
         }

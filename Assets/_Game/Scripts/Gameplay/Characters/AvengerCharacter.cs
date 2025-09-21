@@ -8,7 +8,7 @@ namespace _Game.Scripts.Gameplay.Characters
     {   
         public AudioSource audioSource;
         [SerializeField] private AutoAttackState.Config autoAttackConfig;
-        
+        [SerializeField] private ReceiveShieldState.Config receiveShieldConfig;
         
         public async UniTaskVoid AutoAttack()
         {
@@ -17,6 +17,14 @@ namespace _Game.Scripts.Gameplay.Characters
             
             var state = new AutoAttackState(this, autoAttackConfig, data, audioSource);
 
+            await StartState(state);
+        }
+        
+        public async UniTaskVoid ReceiveShield(float shieldTime)
+        {
+            var data = new ReceiveShieldState.Data(this, shieldTime);
+            var state = new ReceiveShieldState(receiveShieldConfig, data);
+            
             await StartState(state);
         }
         
