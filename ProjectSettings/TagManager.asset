@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Core
+  - Missile
+  - mob2
+  - mob1
   layers:
   - Default
   - TransparentFX

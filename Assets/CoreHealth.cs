@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CoreHealth : MonoBehaviour
@@ -62,7 +63,7 @@ public class CoreHealth : MonoBehaviour
         Debug.Log("Core destroyed!");
         // Burada ölüm işlemlerini yapabilirsiniz
         // exit the game
-        Application.Quit();
+        SceneManager.LoadScene("Main Menu");
     }
     
     private void OnTriggerEnter(Collider other)

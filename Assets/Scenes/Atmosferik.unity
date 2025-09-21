@@ -6098,6 +6098,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6695436431884235716, guid: f30fc07a789f1eb4fb9f37c1e7c38980, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3140960067425996078}
+    - targetCorrespondingSourceObject: {fileID: 6695436431884235716, guid: f30fc07a789f1eb4fb9f37c1e7c38980, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3140960067425996081}
+    - targetCorrespondingSourceObject: {fileID: 6695436431884235716, guid: f30fc07a789f1eb4fb9f37c1e7c38980, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3140960067425996082}
   m_SourcePrefab: {fileID: 100100000, guid: f30fc07a789f1eb4fb9f37c1e7c38980, type: 3}
 --- !u!4 &3140960067425996070 stripped
 Transform:
@@ -6119,12 +6125,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.010469124
-  m_Center: {x: -0.00015961705, y: 0.000009587965, z: 0.000048132606}
+  m_Radius: 0.021437734
+  m_Center: {x: -0.00015961658, y: -0.0012773741, z: 0.0010803643}
 --- !u!114 &3140960067425996074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6169,6 +6175,43 @@ MonoBehaviour:
     maxHealth: 100
     regenerationRate: 1
     regenerationDelay: 3
+--- !u!114 &3140960067425996081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994567394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2350c243b90aa4ea2154390c28f067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthSlider: {fileID: 274023527}
+  mob1DamagePerSecond: 3
+  mob2DamagePerSecond: 10
+--- !u!135 &3140960067425996082
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994567394}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.010469124
+  m_Center: {x: -0.00015961705, y: 0.000009587965, z: 0.000048132606}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
