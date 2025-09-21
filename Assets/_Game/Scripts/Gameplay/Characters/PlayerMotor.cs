@@ -35,11 +35,6 @@ namespace _Game.Scripts.Gameplay.Characters
 
         private bool _isMovingEnabled = true;
         
-        private void Update()
-        {
-            // --- Animation parameter ---
-        }
-
         private void FixedUpdate()
         {
             if (!_isMovingEnabled) return;

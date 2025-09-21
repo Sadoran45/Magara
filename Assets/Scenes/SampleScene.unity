@@ -550,7 +550,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 61.26848
+  field of view: 61.181496
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -577,7 +577,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4848096, y: 0, z: 0, w: 0.8746197}
-  m_LocalPosition: {x: -2.1076324, y: 20.605194, z: -19.682772}
+  m_LocalPosition: {x: -2.1065178, y: 20.636671, z: -19.701069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1159,7 +1159,7 @@ Transform:
   m_GameObject: {fileID: 459647212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3, y: 0, z: -3.7}
+  m_LocalPosition: {x: 4.25, y: 0, z: 0.089999914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4410,7 +4410,7 @@ Transform:
   m_GameObject: {fileID: 957259049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3, y: 0, z: -3.7}
+  m_LocalPosition: {x: 4.25, y: 0, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4512,6 +4512,9 @@ MonoBehaviour:
   - Object: {fileID: 1437072464}
     Weight: 1
     Radius: 0.5
+  - Object: {fileID: 48338085}
+    Weight: 1
+    Radius: 0.5
   m_LegacyTargets: []
 --- !u!4 &1177933557
 Transform:
@@ -4522,7 +4525,7 @@ Transform:
   m_GameObject: {fileID: 1177933555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4749999, y: 0, z: -4.915}
+  m_LocalPosition: {x: -0.3166666, y: 0, z: -3.2766666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4621,7 +4624,7 @@ Transform:
   m_GameObject: {fileID: 1284132856}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4848096, y: 0, z: 0, w: 0.8746197}
-  m_LocalPosition: {x: -0.4749999, y: 0, z: -12.615}
+  m_LocalPosition: {x: -0.3166666, y: 0, z: -10.976666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5213,6 +5216,10 @@ MonoBehaviour:
     baseDamage: 52
   sendShieldEffectConfig:
     shieldSendEffectPrefab: {fileID: 1829040919194171900, guid: 2cdcd3ad43b699d47bf87d796a716b12, type: 3}
+  healthSystem:
+    maxHealth: 100
+    regenerationRate: 1
+    regenerationDelay: 3
 --- !u!136 &2069001176
 CapsuleCollider:
   m_ObjectHideFlags: 0
