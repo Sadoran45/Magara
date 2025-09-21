@@ -16,41 +16,35 @@ MonoBehaviour:
   - waveNumber: 1
     enemySequence:
     - isDelay: 0
-      enemyType: 3
-      delayValue: 1
-    - isDelay: 1
-      enemyType: 0
-      delayValue: 1
-    - isDelay: 0
-      enemyType: 1
-      delayValue: 1
-    - isDelay: 1
       enemyType: 0
       delayValue: 1
     - isDelay: 0
       enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 1
+      enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 2
+      enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 3
+      enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 1
+      enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 3
+      enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 1
+      enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 1
+      enemyType: 0
       delayValue: 1
     - isDelay: 0
-      enemyType: 1
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
       delayValue: 1

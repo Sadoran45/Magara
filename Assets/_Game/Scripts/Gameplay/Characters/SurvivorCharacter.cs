@@ -12,6 +12,7 @@ namespace _Game.Scripts.Gameplay.Characters
 {
     public class SurvivorCharacter : PlayerMotor
     {
+        public AudioSource audioSource;
         [SerializeField] private AutoAttackState.Config autoAttackConfig;
         [SerializeField] private DashState.Config dashConfig;
         [SerializeField] private SurvivorLaserAttackState.Config laserAttackConfig;
@@ -40,7 +41,7 @@ namespace _Game.Scripts.Gameplay.Characters
             
             var data = new AutoAttackState.Data(aimDirection);
             
-            var state = new AutoAttackState(this, autoAttackConfig, data);
+            var state = new AutoAttackState(this, autoAttackConfig, data, audioSource);
 
             await StartState(state);
         }
@@ -48,14 +49,14 @@ namespace _Game.Scripts.Gameplay.Characters
         public async UniTaskVoid Dash()
         {
             var data = new DashState.Data(aimDirection);
-            var state = new DashState(this, dashConfig, data);
+            var state = new DashState(this, dashConfig, data, audioSource);
             
             await StartState(state);
         }
 
         public async UniTaskVoid LaserAttack()
         {
-            var state = new SurvivorLaserAttackState(this, laserAttackConfig, new SurvivorLaserAttackState.Data());
+            var state = new SurvivorLaserAttackState(this, laserAttackConfig, new SurvivorLaserAttackState.Data(), audioSource);
             
             await StartState(state);
         }
