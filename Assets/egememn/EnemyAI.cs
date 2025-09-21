@@ -5,6 +5,8 @@ public class EnemyAI : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float playerDetectionRange = 3f;
+    [SerializeField] private float coreStoppingDistance = 2f;
+    [SerializeField] private float playerStoppingDistance = 0.5f;
     
     private GameObject coreTarget;
     private GameObject playerTarget;
@@ -63,6 +65,21 @@ public class EnemyAI : MonoBehaviour
     {
         if (currentTarget == null) return;
         
+        // Hedefe olan mesafeyi hesapla
+        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.transform.position);
+        
+        // Eğer hedef Core ise ve çok yakındaysak durma mesafesini kontrol et
+        if (currentTarget == coreTarget && distanceToTarget <= coreStoppingDistance)
+        {
+            return; // Core'a çok yakınsak hareket etme
+        }
+        
+        // Eğer hedef Player ise ve çok yakındaysak durma mesafesini kontrol et
+        if (currentTarget == playerTarget && distanceToTarget <= playerStoppingDistance)
+        {
+            return; // Player'a çok yakınsak hareket etme
+        }
+        
         // Hedefe doğru yön hesapla
         Vector3 direction = (currentTarget.transform.position - transform.position).normalized;
         
@@ -76,10 +93,25 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    // Debug için range'i görselleştir
+    // Debug için range'leri görselleştir
     private void OnDrawGizmosSelected()
     {
+        // Player algılama menzili
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, playerDetectionRange);
+        
+        // Core durma mesafesi
+        if (coreTarget != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(coreTarget.transform.position, coreStoppingDistance);
+        }
+        
+        // Player durma mesafesi
+        if (playerTarget != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(playerTarget.transform.position, playerStoppingDistance);
+        }
     }
 }

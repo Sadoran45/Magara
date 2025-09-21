@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   playerDetectionRange: 3
+  coreStoppingDistance: 2
 --- !u!1 &7260279905142484527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3029032871660112297, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
