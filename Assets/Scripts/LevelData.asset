@@ -48,3 +48,62 @@ MonoBehaviour:
     - isDelay: 0
       enemyType: 0
       delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+  - waveNumber: 2
+    enemySequence:
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 1
+      delayValue: 1
+    - isDelay: 0
+      enemyType: 0
+      delayValue: 1
