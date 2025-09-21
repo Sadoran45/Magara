@@ -2,6 +2,7 @@
 using System.Threading;
 using _Game.Scripts.Core;
 using _Game.Scripts.Core.Helpers;
+using _Game.Scripts.Core.Features;
 using _Game.Scripts.Gameplay.Characters;
 using _Game.Scripts.Gameplay.Components;
 using _Game.Scripts.Gameplay.Core;
@@ -24,6 +25,10 @@ namespace _Game.Scripts.Gameplay.States
             // FOR TEST
             public float hitDelay = 0.6f;
             public float baseDamage = 5f;
+            
+            [Header("Sound Effects")]
+            public SoundEffectAsset attackSound;
+            public SoundEffectAsset hitSound;
         }
         public class Data
         {
@@ -33,12 +38,14 @@ namespace _Game.Scripts.Gameplay.States
 
         private readonly PlayerMotor _owner;
         private readonly Config _config;
+        private readonly AudioSource _audioSource;
         public Data StateData { get; }
         
-        public SurvivorLaserAttackState(PlayerMotor owner, Config config, Data data)
+        public SurvivorLaserAttackState(PlayerMotor owner, Config config, Data data, AudioSource audioSource)
         {
             _owner = owner;
             _config = config;
+            _audioSource = audioSource;
             StateData = data;
         }
         
@@ -48,6 +55,12 @@ namespace _Game.Scripts.Gameplay.States
             
             try
             {
+                // Play attack sound when attack starts
+                if (_config.attackSound != null)
+                {
+                    _config.attackSound.PlaySound(_audioSource, cancellationToken).Forget();
+                }
+                
                 // Do not wait for any callback
                 _config.attackAnimation.PlayAsync(_owner.Animator, cancellationToken).Forget();
                 
@@ -64,6 +77,12 @@ namespace _Game.Scripts.Gameplay.States
                     var hittable = hitData.Target.GetComponent<IHittable>();
 
                     hittable?.OnReceivedHit(hitData);
+                    
+                    // Play hit sound when hit occurs
+                    if (hittable != null && _config.hitSound != null)
+                    {
+                        _config.hitSound.PlaySound(_audioSource, cancellationToken).Forget();
+                    }
                 });
                 
                 _config.attackAnimation.Cancel(_owner.Animator);

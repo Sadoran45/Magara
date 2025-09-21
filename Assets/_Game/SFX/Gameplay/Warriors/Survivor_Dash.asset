@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18cf194cbefc4fc1940233d70f3885ef, type: 3}
-  m_Name: Survivor_Charge
+  m_Name: Survivor_Dash
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: dd3c26b56ac188045a433862d999eb83, type: 3}
