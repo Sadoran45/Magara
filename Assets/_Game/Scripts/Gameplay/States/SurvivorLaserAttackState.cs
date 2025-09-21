@@ -70,6 +70,7 @@ namespace _Game.Scripts.Gameplay.States
                 var direction = _owner.transform.forward;
                 var hitter = Object.Instantiate(_config.hitter, _config.muzzleTransform.position, Quaternion.LookRotation(direction));
 
+                hitter.SetOwner(_owner.transform);
                 hitter.Launch(this, direction, ignoreColliders: _owner.gameObject);
                 hitter.OnHit.Take(1).TakeUntil(hitter.destroyCancellationToken).Subscribe(hitData =>
                 {

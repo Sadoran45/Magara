@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.94
+      value: 13.893494
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000000059604645
+      value: 0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.35
+      value: 3.6943216
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       propertyPath: m_LocalRotation.w
@@ -116,6 +116,9 @@ PrefabInstance:
       addedObject: {fileID: 2673403944435849759}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 5452806042732573934}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
+      insertIndex: -1
       addedObject: {fileID: -3990294742313749698}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5aa05a74bcb17a54b95a904a233c7b08, type: 3}
       insertIndex: -1
@@ -167,12 +170,39 @@ MonoBehaviour:
   playerDetectionRange: 3
   attackRange: 3
   detectionUpdateInterval: 0.1
-  coreTarget: {fileID: 8822625626499881080, guid: 6d975ba8ba270c64db29aa48d82412f1, type: 3}
+  coreTarget: {fileID: 0}
   moveSpeed: 2.34
   rotationSpeed: 360
   attackDuration: 2
   attackCooldown: 1
   showDebugGizmos: 1
+--- !u!54 &5452806042732573934
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464876392690361641}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!136 &-3990294742313749698
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -195,7 +225,7 @@ CapsuleCollider:
   m_Radius: 1.9
   m_Height: 5.67
   m_Direction: 1
-  m_Center: {x: 0, y: 2.1623073, z: 0}
+  m_Center: {x: 0, y: 3.03, z: 0}
 --- !u!114 &7707202158656698746
 MonoBehaviour:
   m_ObjectHideFlags: 0

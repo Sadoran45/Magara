@@ -6,6 +6,7 @@ using _Game.Scripts.Core.Features;
 using _Game.Scripts.Gameplay.Characters;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using _Game.Scripts.Core.Extensions;
 
 namespace _Game.Scripts.Gameplay.States
 {
@@ -34,14 +35,12 @@ namespace _Game.Scripts.Gameplay.States
         
         private readonly PlayerMotor _owner;
         private readonly Config _config;
-        private readonly AudioSource _audioSource;
         public Data StateData { get; }
         
-        public DashState(PlayerMotor owner, Config config, Data data, AudioSource audioSource)
+        public DashState(PlayerMotor owner, Config config, Data data)
         {
             _owner = owner;
             _config = config;
-            _audioSource = audioSource;
             StateData = data;
         }
         
@@ -52,7 +51,7 @@ namespace _Game.Scripts.Gameplay.States
             // Play dash sound when dash starts
             if (_config.dashSound != null)
             {
-                _config.dashSound.PlaySound(_audioSource, cancellationToken).Forget();
+                _config.dashSound.PlaySound(cancellationToken).Forget();
             }
             
             _config.dashAnimation.PlayAsync(_owner.Animator, cancellationToken).Forget();
