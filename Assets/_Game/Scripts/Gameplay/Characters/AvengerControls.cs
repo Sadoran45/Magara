@@ -43,6 +43,8 @@ namespace _Game.Scripts.Gameplay.Characters
             
             var inputVector = new Vector3(inputX, 0, inputY).normalized;
             playerMotor.SendMovementInput(inputVector);
+            if (inputVector == Vector3.zero)
+                inputVector = transform.forward;
             playerMotor.SetAimDirection(inputVector);
         }
     }

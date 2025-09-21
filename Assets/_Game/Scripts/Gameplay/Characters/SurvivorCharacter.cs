@@ -27,7 +27,7 @@ namespace _Game.Scripts.Gameplay.Characters
 
         private void Awake()
         {
-            healthHUD.Initialize(this);
+            if(healthHUD) healthHUD.Initialize(this);
         }
 
         private void Update()
