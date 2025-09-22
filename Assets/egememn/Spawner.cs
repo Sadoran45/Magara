@@ -48,9 +48,6 @@ public class Spawner : MonoBehaviour
         }
     }
     
-    [Button("Start Spawning", ButtonSizes.Medium)]
-    [EnableIf("@!isSpawning && CanStartSpawning()")]
-    [GUIColor(0.4f, 0.8f, 0.4f)]
     public void StartSpawning()
     {
         Debug.Log("StartSpawning called");
@@ -74,9 +71,6 @@ public class Spawner : MonoBehaviour
         spawnCoroutine = StartCoroutine(SpawnWaves());
     }
     
-    [Button("Stop Spawning", ButtonSizes.Medium)]
-    [EnableIf("isSpawning")]
-    [GUIColor(0.8f, 0.4f, 0.4f)]
     public void StopSpawning()
     {
         if (spawnCoroutine != null)

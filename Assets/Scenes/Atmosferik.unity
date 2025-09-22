@@ -256,10 +256,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: af653f0b4b687404d970f010beafb3d3, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: af653f0b4b687404d970f010beafb3d3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.344
+  m_Volume: 0.453
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -607,7 +607,7 @@ PrefabInstance:
     - target: {fileID: 5498009455754512114, guid: 8745b4234d71b86499e157d6473ee220, type: 3}
       propertyPath: p1
       value: 
-      objectReference: {fileID: 742274453}
+      objectReference: {fileID: 747151951}
     - target: {fileID: 5498009455754512114, guid: 8745b4234d71b86499e157d6473ee220, type: 3}
       propertyPath: p2
       value: 
@@ -1401,7 +1401,7 @@ PrefabInstance:
     - target: {fileID: 357930740322803107, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 742274454}
+      objectReference: {fileID: 747151951}
     - target: {fileID: 480627845756131893, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: Space
       value: 1
@@ -1409,7 +1409,7 @@ PrefabInstance:
     - target: {fileID: 480627845756131893, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 1960309393}
+      objectReference: {fileID: 1623607830}
     - target: {fileID: 1637683567540756726, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: Target
       value: 
@@ -1432,27 +1432,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7566643917393218911, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
-      value: -9.27
+      value: -9.156
       objectReference: {fileID: 0}
     - target: {fileID: 7566643917393218911, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.y
-      value: 0.87799954
+      value: 0.8799995
       objectReference: {fileID: 0}
     - target: {fileID: 7566643917393218911, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
-      value: 2.6
+      value: 2.6569998
       objectReference: {fileID: 0}
     - target: {fileID: 7566643917393218911, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.x
-      value: -0.000000029802322
+      value: 2.4128308
       objectReference: {fileID: 0}
     - target: {fileID: 7566643917393218911, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.y
-      value: 0
+      value: 1.0391018
       objectReference: {fileID: 0}
     - target: {fileID: 7566643917393218911, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.z
-      value: 0
+      value: -4.3449926
       objectReference: {fileID: 0}
     - target: {fileID: 7566643917393218911, guid: 0d6a579aec57ef34bb5e262636d033ed, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.x
@@ -1721,6 +1721,11 @@ PrefabInstance:
 --- !u!4 &742274454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 521786453389314623, guid: c6cdf1eb493be9744953f86af761f5ff, type: 3}
+  m_PrefabInstance: {fileID: 742274452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &747151951 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3263751869576649128, guid: c6cdf1eb493be9744953f86af761f5ff, type: 3}
   m_PrefabInstance: {fileID: 742274452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &800393529
@@ -4056,10 +4061,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437072463}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5928,10 +5933,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069001174}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
